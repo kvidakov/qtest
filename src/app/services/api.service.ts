@@ -8,7 +8,6 @@ import * as uuid from 'uuid';
 })
 export class ApiService {
   todos: Todo[] = [...Array(7).keys()].map((iterator, index) => {
-    console.log('index ', index);
     return {
       id: index,
       title: `Title ${index}`,
