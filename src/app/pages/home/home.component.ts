@@ -48,6 +48,8 @@ export class HomeComponent implements OnInit {
         this.dataSource.data = data;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        console.log('this.dataSource: ', this.dataSource);
+        console.log('this.dataSource.paginator: ', this.dataSource.paginator);
       }
     });
     this.dataSource.filterPredicate = (data: Todo, filter: string) =>
