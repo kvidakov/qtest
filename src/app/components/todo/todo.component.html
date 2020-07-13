@@ -1,0 +1,72 @@
+<section class="dialog">
+    <h2 class="dialog__title" *ngIf="mode === 'addNewTodo'">
+        Add new Todo
+        <button mat-button class="dialog__header-button" [mat-dialog-close]>
+            <span class="material-icons">
+                close
+            </span>
+        </button>
+    </h2>
+    <h2 class="dialog__title" *ngIf="mode !== 'addNewTodo'">
+        Todo details
+        <button mat-button class="dialog__header-button" (click)="emitGoBack()">
+            <span class="material-icons">
+                keyboard_backspace
+            </span>
+        </button>
+    </h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <mat-form-field *ngIf="mode !== 'addNewTodo'">
+            <mat-label>Id</mat-label>
+            <input matInput formControlName="id" placeholder="Id" type="text" readonly>
+        </mat-form-field>
+        <mat-form-field appearance="{{ mode === 'edit' ? 'fill' : 'standard' }}">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" placeholder="Todo Title" type="text" class="js-title-input" [readonly]="readonly">
+        </mat-form-field>
+        <mat-form-field appearance="{{ mode === 'edit' ? 'fill' : 'standard' }}">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" placeholder="Todo Description" rows="5"
+                [readonly]="readonly"></textarea>
+        </mat-form-field>
+        <mat-form-field *ngIf="mode !== 'addNewTodo'">
+            <mat-label>Created At</mat-label>
+            <input matInput formControlName="created" type="text" readonly>
+        </mat-form-field>
+        <div class="dialog__checkbox" *ngIf="mode !== 'addNewTodo'">
+            <mat-label class="mr-10px">Completed</mat-label>
+            <mat-checkbox matInput formControlName="completed" (change)="onCheckboxChange($event)">
+            </mat-checkbox>
+        </div>
+        <div class="dialog__actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid"
+                *ngIf="mode === 'addNewTodo'">
+                Add
+            </button>
+            <ng-container *ngIf="mode === 'view'">
+                <button mat-raised-button color="basic" type="button" class="mr-10px" (click)="emitToggleMode('edit')" title="edit">
+                    <span class="material-icons">
+                        edit
+                    </span>
+                </button>
+                <button mat-raised-button color="warn" type="button" (click)="emitDeleteTodo()" title="delete">
+                    <span class="material-icons">
+                        delete
+                    </span>
+                </button>
+            </ng-container>
+            <ng-container *ngIf="mode === 'edit'">
+                <button mat-raised-button color="basic" type="button" class="mr-10px" (click)="resetValues()" title="discard changes">
+                    <span class="material-icons">
+                        settings_backup_restore
+                    </span>
+                </button>
+                <button mat-raised-button color="primary" type="button" [disabled]="form.invalid" (click)="saveChanges(form.value)" title="save">
+                    <span class="material-icons">
+                        save
+                    </span>
+                </button>
+            </ng-container>
+        </div>
+    </form>
+</section>
