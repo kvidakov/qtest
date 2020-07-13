@@ -1,0 +1,16 @@
+<section class="dialog">
+    <h2 class="dialog__title">
+        Are you sure you want to delete {{ subject }}?
+        <button mat-button class="dialog__header-button" (click)="closeDialog(false)">
+            <span class="material-icons">
+                close
+            </span>
+        </button>
+    </h2>
+    <div class="dialog__actions">
+        <button mat-raised-button color="basic" (click)="closeDialog(false)" value="false" class="dialog__actions--cancel mr-10px"
+            type="button">Go back</button>
+        <button mat-raised-button color="warn" (click)="closeDialog(true)" value="true" class="dialog__actions--submit"
+            type="button">Yes, delete</button>
+    </div>
+</section>
