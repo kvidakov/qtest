@@ -1,0 +1,4 @@
+<section class="details">
+    <app-todo [todo]="todo" [mode]="mode" (goBack)="onGoBack($event)" (deleteTodo)="onDeleteTodo($event)"
+        (checkboxChanged)="onCheckboxChanged($event)" (toggleMode)="onToggleMode($event)" (updateTodo)="onUpdateTodo($event)"></app-todo>
+</section>
