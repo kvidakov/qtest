@@ -1,0 +1,11 @@
+<section class="dialog">
+    <h2 class="dialog__title">
+        You have unsaved changes! Are you sure you want to continue?
+    </h2>
+    <div class="dialog__actions">
+        <button mat-raised-button color="basic" (click)="closeDialog(true)" value="false" class="dialog__actions--cancel mr-10px"
+            type="button">Discard and continue</button>
+        <button mat-raised-button color="primary" (click)="closeDialog(false)" value="true" class="dialog__actions--submit"
+            type="button">Cancel redirect</button>
+    </div>
+</section>
